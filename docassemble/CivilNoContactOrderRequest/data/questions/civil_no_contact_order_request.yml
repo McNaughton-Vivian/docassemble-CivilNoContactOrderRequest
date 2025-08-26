@@ -3993,6 +3993,7 @@ attachment:
     - "user_address_one_line": ${ users[0].address.on_one_line(bare=True) }
     - "user_phone_number": ${ phone_number_formatted(users[0].phone_number) }
     - "user_email": ${ users[0].email if users[0].has_email_address else ""}
+    - "form_for_self": ${ True }
 ---
 section: Basic info
 id: basic info review screen
