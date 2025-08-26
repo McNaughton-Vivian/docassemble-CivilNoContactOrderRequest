@@ -125,8 +125,6 @@ code: |
   nav.set_section('section_protections')
   order_type
   #May need to add emergency reason back in after AOIC redesigns forms.
-  #if order_type['emergency'] and trial_court_index == -1:
-  #  emergency_reason
   if protection_requested['away_places']:
     if protected_place_types['Home']:
       run_home_address_block
