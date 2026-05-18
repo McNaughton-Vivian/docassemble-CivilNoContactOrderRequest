@@ -1,7 +1,7 @@
 metadata:
   title: Civil No Contact Order
   short title: Civil No Contact Order
-  comment: This program helps you ask the court to order someone abusing you to leave you alone. You can ask for a CNCO if you are a victim of sexual assault, or sexual abuse.
+  comment: This Easy Form helps you ask the court to order someone abusing you to leave you alone. You can ask for a CNCO if you are a victim of sexual assault, or sexual abuse.
   authors:
     - Vivian McNaughton
     - Matt Newsted
@@ -221,7 +221,7 @@ code: |
 
   pop_protected_code  
   forms_assembling
-  addendum_check
+  #addendum_check
   with_initials
   #adult_minor_sorting
   snapshot_forms
@@ -2656,30 +2656,48 @@ subquestion: |
 
   You can also download instructions at the end of this program. The instructions can guide you through filing your forms and going to court.
 ---
-reconsider: True
-code: |
-  if others_protected.there_are_any:
-
-    for index, other in enumerate(others_protected):
-      if trial_court_index == -1:
-        other.include_in_addendum = True
-      else:
-        if index > 1:
-          other.include_in_addendum = True
-        else:
-          other.include_in_addendum = False
-  for index, event in enumerate(abusive_acts):
-    if trial_court_index == -1:
-      if index > 0:
-        event.include_in_addendum = True
-      else:
-        event.include_in_addendum = False
-    else:
-      if index > 0:
-        event.include_in_addendum = True
-      else:
-        event.include_in_addendum = False
-  addendum_check = True
+#reconsider: True
+#code: |
+#  if others_protected.there_are_any:
+#
+#    for index, other in enumerate(others_protected):
+#      if trial_court_index == -1:
+#        other.include_in_addendum = True
+#      else:
+#        if index > 1:
+#          other.include_in_addendum = True
+#        else:
+#          other.include_in_addendum = False
+#  for index, event in enumerate(abusive_acts):
+#    if trial_court_index == -1:
+#      if index > 0:
+#        event.include_in_addendum = (trial_court_index == -1 or (i > 1))
+#      else:
+#        event.include_in_addendum = False
+#    else:
+#      if index > 0:
+#        event.include_in_addendum = (trial_court_index == -1 or (i > 1))
+#      else:
+#        event.include_in_addendum = False
+#  addendum_check = True
+---
+#reconsider: True
+#code: |
+#  if trial_court_index == -1:
+#    others_protected[i].include_in_addendum = True
+#  elif i > 1:
+#    others_protected[i].include_in_addendum = True
+#  else:
+#    others_protected[i].include_in_addendum = False
+#  others_protected_addendum_block = True
+#---
+#reconsider: True
+#code: |
+#  if i == 0:
+#    abusive_acts[i].include_in_addendum = False
+#  else:
+#    abusive_acts[i].include_in_addendum = True
+#  abusive_acts_addendum_block = True
 ---
 id: initials debug
 continue button field: ugh_initials_debug
